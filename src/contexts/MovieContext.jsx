@@ -135,7 +135,14 @@ export const MovieProvider = ({ children }) => {
         }
     }
 
-
+    const addToFavorites = (movie) => {
+        setFavorites((prev) => {
+            if (prev.some((m) => m.id === movie.id)) {
+                return prev
+            }
+            return [...prev, movie]
+        })
+    }
 
 
 
