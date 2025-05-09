@@ -49,6 +49,7 @@ export const MovieProvider = ({ children }) => {
         fetchGenres()
         // Fetch trending movies when component mounts
         fetchTrendingMovies()
+        // eslint-disable-next-line
     }, [])
 
     const fetchGenres = async () => {
