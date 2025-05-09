@@ -13,6 +13,7 @@ import {
     Drawer,
     List,
     ListItem,
+    ListItemButton,
     ListItemIcon,
     ListItemText,
     useMediaQuery,
@@ -25,16 +26,13 @@ import {
     Menu as MenuIcon,
     Home as HomeIcon,
     Favorite as FavoriteIcon,
-    Logout as LogoutIcon,
     DarkMode as DarkModeIcon,
     LightMode as LightModeIcon,
 } from "@mui/icons-material"
-import { useAuth } from "../contexts/AuthContext"
 import { useMovies } from "../contexts/MovieContext"
 import "./Header.css"
 
-const Header = ({ toggleDarkMode, darkMode }) => {
-    const { currentUser, logout } = useAuth()
+const Header = ({ setTabValue, toggleDarkMode, darkMode }) => {
     const { searchMovies, lastSearch } = useMovies()
     const [searchQuery, setSearchQuery] = useState(lastSearch)
     const [drawerOpen, setDrawerOpen] = useState(false)
@@ -47,16 +45,17 @@ const Header = ({ toggleDarkMode, darkMode }) => {
         if (searchQuery.trim()) {
             searchMovies(searchQuery)
             navigate("/")
+            setTabValue(2)
             setDrawerOpen(false)
         }
     }
 
-    const handleLogout = () => {
-        logout()
-        navigate("/login")
-    }
-
     const toggleDrawer = (open) => (event) => {
+        if (!open) {
+            if (document.activeElement) {
+                document.activeElement.blur();
+            }
+        }
         if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
             return
         }
@@ -66,24 +65,20 @@ const Header = ({ toggleDarkMode, darkMode }) => {
     const drawerContent = (
         <Box className="drawer-content" role="presentation" onClick={toggleDrawer(false)} onKeyDown={toggleDrawer(false)}>
             <List>
-                <ListItem button component={Link} to="/">
+                <ListItemButton>
                     <ListItemIcon>
                         <HomeIcon />
                     </ListItemIcon>
                     <ListItemText primary="Home" />
-                </ListItem>
-                <ListItem button component={Link} to="/favorites">
+                    <Link to="/" style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} />
+                </ListItemButton>
+                <ListItemButton >
                     <ListItemIcon>
                         <FavoriteIcon />
                     </ListItemIcon>
                     <ListItemText primary="Favorites" />
-                </ListItem>
-                <ListItem button onClick={handleLogout}>
-                    <ListItemIcon>
-                        <LogoutIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Logout" />
-                </ListItem>
+                    <Link to="Favorites" style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} />
+                </ListItemButton>
                 <ListItem>
                     <FormControlLabel
                         control={<Switch checked={darkMode} onChange={toggleDarkMode} color="primary" />}
@@ -93,8 +88,6 @@ const Header = ({ toggleDarkMode, darkMode }) => {
             </List>
         </Box>
     )
-
-    if (!currentUser) return null
 
     return (
         <AppBar position="sticky">
@@ -113,7 +106,7 @@ const Header = ({ toggleDarkMode, darkMode }) => {
                 )}
 
                 <Typography variant="h6" noWrap component={Link} to="/" className="app-title">
-                    Movie Explorer
+                    Movia
                 </Typography>
 
                 <form onSubmit={handleSearch} className="search-form">
@@ -146,9 +139,6 @@ const Header = ({ toggleDarkMode, darkMode }) => {
                         </Button>
                         <Button color="inherit" component={Link} to="/favorites">
                             Favorites
-                        </Button>
-                        <Button color="inherit" onClick={handleLogout}>
-                            Logout
                         </Button>
                     </Box>
                 )}
