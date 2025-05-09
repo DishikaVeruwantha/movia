@@ -1,8 +1,10 @@
+/* Container for the home page content */
 .home-container {
     padding-top: 24px;
     padding-bottom: 24px;
 }
 
+/* Wrapper for the tab navigation */
 .tabs-container {
     width: 100%;
     margin-top: 24px;
