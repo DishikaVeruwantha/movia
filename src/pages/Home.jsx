@@ -30,7 +30,56 @@ const Home = ({ tabValue, setTabValue }) => {
                 </Tabs>
             </Box>
 
+            {(() => {
+                switch (tabValue) {
+                    case 0:
+                        return (
+                            <MovieGrid
+                                movies={trendingMovies}
+                                loading={loading}
+                                error={error}
+                                title="Trending Movies"
+                                emptyMessage="No trending movies available. Please try again later."
+                                onLoadMore={() => loadMoreResults("trending")}
+                                hasMore={page < totalPages}
+                            />
+                        );
 
+                    case 1:
+                        return (
+                            <>
+                                <FilterPanel />
+                                <MovieGrid
+                                    movies={filterResults}
+                                    loading={loading}
+                                    error={error}
+                                    title="Filter Movies"
+                                    emptyMessage="No movies found matching your search."
+                                    onLoadMore={() => loadMoreResults("filter")}
+                                    hasMore={page < totalPages}
+                                />
+                            </>
+                        );
+
+                    case 2:
+                        return (
+                            <>
+                                <MovieGrid
+                                    movies={searchResults}
+                                    loading={loading}
+                                    error={error}
+                                    title={`Search Results for "${lastSearch}"`}
+                                    emptyMessage="No movies found matching your search."
+                                    onLoadMore={() => loadMoreResults("search")}
+                                    hasMore={page < totalPages}
+                                />
+                            </>
+                        );
+
+                    default:
+                        return null;
+                }
+            })()}
 
         </Container>
     )
