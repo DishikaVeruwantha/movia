@@ -101,7 +101,13 @@ const MovieDetails = () => {
         )
     }
 
-
+    if (!movie) {
+        return (
+            <Container maxWidth="lg" className="details-container">
+                <Alert severity="info">Movie not found.</Alert>
+            </Container>
+        )
+    }
 
 
 
