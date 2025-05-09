@@ -167,7 +167,11 @@ const MovieDetails = () => {
                                 ))}
                         </Box>
 
-
+                        <Box className="overview-container">
+                            <Typography variant="body1" paragraph>
+                                {movie.overview}
+                            </Typography>
+                        </Box>
 
 
 
