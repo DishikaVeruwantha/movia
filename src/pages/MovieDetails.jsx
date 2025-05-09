@@ -173,7 +173,36 @@ const MovieDetails = () => {
                             </Typography>
                         </Box>
 
-
+                        <Grid container spacing={2} className="movie-meta">
+                            <Grid item xs={6} sm={3}>
+                                <Box className="meta-item">
+                                    <AccessTime fontSize="small" className="meta-icon" />
+                                    <Typography variant="body2">{movie.runtime ? `${movie.runtime} min` : "N/A"}</Typography>
+                                </Box>
+                            </Grid>
+                            <Grid item xs={6} sm={3}>
+                                <Box className="meta-item">
+                                    <CalendarToday fontSize="small" className="meta-icon" />
+                                    <Typography variant="body2">
+                                        {movie.release_date ? new Date(movie.release_date).toLocaleDateString() : "N/A"}
+                                    </Typography>
+                                </Box>
+                            </Grid>
+                            <Grid item xs={6} sm={3}>
+                                <Box className="meta-item">
+                                    <Language fontSize="small" className="meta-icon" />
+                                    <Typography variant="body2">
+                                        {movie.original_language ? movie.original_language.toUpperCase() : "N/A"}
+                                    </Typography>
+                                </Box>
+                            </Grid>
+                            <Grid item xs={6} sm={3}>
+                                <Box className="meta-item">
+                                    <AttachMoney fontSize="small" className="meta-icon" />
+                                    <Typography variant="body2">{formatCurrency(movie.budget)}</Typography>
+                                </Box>
+                            </Grid>
+                        </Grid>
 
 
 
