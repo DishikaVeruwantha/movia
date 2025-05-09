@@ -150,7 +150,15 @@ const MovieDetails = () => {
                             )}
                         </Typography>
 
-
+                        <Box className="rating-container-large">
+                            <Rating value={movie.vote_average / 2} precision={0.5} readOnly />
+                            <Typography variant="body1" className="rating-value">
+                                {movie.vote_average.toFixed(1)}/10
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary" className="vote-count">
+                                ({movie.vote_count} votes)
+                            </Typography>
+                        </Box>
 
 
 
