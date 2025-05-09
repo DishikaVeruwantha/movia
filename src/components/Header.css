@@ -1,3 +1,4 @@
+/* App title styling in the header */
 .app-title {
     flex-grow: 0;
     display: block;
@@ -6,10 +7,12 @@
     font-weight: bold;
 }
 
+/* Spacing to the right of the hamburger menu icon */
 .menu-button {
     margin-right: 16px;
 }
 
+/* Form wrapper for search bar, allowing it to grow and center */
 .search-form {
     flex-grow: 1;
     display: flex;
@@ -17,6 +20,7 @@
     justify-content: center;
 }
 
+/* Search input wrapper with background and rounded corners */
 .search-wrapper {
     position: relative;
     border-radius: 4px;
@@ -26,10 +30,13 @@
     width: 100%;
 }
 
+/* Darker background on hover */
 .search-wrapper:hover {
     background-color: rgba(255, 255, 255, 0.25);
 }
 
+/* On medium+ screens,
+give the search wrapper more left margin and allow it to auto-resize */
 @media (min-width: 600px) {
     .search-wrapper {
         margin-left: 24px;
@@ -37,6 +44,7 @@
     }
 }
 
+/* Container for the search icon inside the input field */
 .search-icon-wrapper {
     padding: 0 16px;
     height: 100%;
@@ -47,11 +55,13 @@
     justify-content: center;
 }
 
+/* Search input inherits text color and fills width */
 .search-input {
     color: inherit;
     width: 100%;
 }
 
+/* Styles the actual input element inside the search bar */
 .search-input input {
     padding: 8px 8px 8px 0;
     padding-left: calc(1em + 32px);
@@ -59,6 +69,8 @@
     width: 100%;
 }
 
+/* On larger screens,
+default width is 20 characters expands to 30 when focused */
 @media (min-width: 960px) {
     .search-input input {
         width: 20ch;
@@ -69,15 +81,18 @@
     }
 }
 
+/* Margin between search input and the search button */
 .search-button {
     margin-left: 8px;
 }
 
+/* Container for navigation links in the top bar */
 .nav-links {
     display: flex;
     align-items: center;
 }
 
+/* Width of the sidebar drawer content */
 .drawer-content {
     width: 250px;
 }
