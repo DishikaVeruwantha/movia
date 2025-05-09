@@ -1,0 +1,44 @@
+.movie-grid-container {
+    padding-top: 32px;
+    padding-bottom: 32px;
+}
+
+.grid-title {
+    margin-bottom: 16px;
+}
+
+.movie-grid {
+    margin-bottom: 24px;
+}
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    padding: 32px;
+}
+
+.error-container {
+    padding: 32px;
+    text-align: center;
+}
+
+.empty-container {
+    padding: 32px;
+    text-align: center;
+}
+
+.loading-more-container {
+    display: flex;
+    justify-content: center;
+    padding: 32px;
+}
+
+.load-more-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
+}
+
+.load-more-button {
+    min-width: 120px;
+}
