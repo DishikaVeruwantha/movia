@@ -139,7 +139,29 @@ const MovieDetails = () => {
                         </Box>
                     </Grid>
 
+                    {/* Movie Details */}
+                    <Grid item xs={12} md={8}>
+                        <Typography variant="h4" component="h1" className="movie-title-large">
+                            {movie.title}
+                            {movie.release_date && (
+                                <Typography variant="h6" component="span" color="text.secondary" className="movie-year">
+                                    ({new Date(movie.release_date).getFullYear()})
+                                </Typography>
+                            )}
+                        </Typography>
 
+
+
+
+
+
+
+
+
+
+
+
+                    </Grid>
                 </Grid>
 
 
