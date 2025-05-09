@@ -206,7 +206,32 @@ const MovieDetails = () => {
 
                         <Divider className="details-divider" />
 
-
+                        {/* Cast Section */}
+                        <Typography variant="h6" className="section-title">
+                            Top Cast
+                        </Typography>
+                        <List className="cast-list">
+                            {movie.credits && movie.credits.cast ? (
+                                movie.credits.cast.slice(0, 6).map((person) => (
+                                    <ListItem key={person.id} className="cast-item">
+                                        <ListItemAvatar>
+                                            <Avatar
+                                                src={person.profile_path ? `https://image.tmdb.org/t/p/w200${person.profile_path}` : null}
+                                                alt={person.name}
+                                            />
+                                        </ListItemAvatar>
+                                        <ListItemText
+                                            primary={person.name}
+                                            secondary={person.character}
+                                            primaryTypographyProps={{ noWrap: true }}
+                                            secondaryTypographyProps={{ noWrap: true }}
+                                        />
+                                    </ListItem>
+                                ))
+                            ) : (
+                                <Typography variant="body2">No cast information available</Typography>
+                            )}
+                        </List>
                     </Grid>
                 </Grid>
 
