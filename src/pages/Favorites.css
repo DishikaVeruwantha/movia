@@ -1,0 +1,18 @@
+.favorites-container {
+    padding-top: 32px;
+    padding-bottom: 32px;
+}
+
+.favorites-title {
+    margin-bottom: 24px;
+}
+
+.empty-favorites {
+    text-align: center;
+    padding-top: 64px;
+    padding-bottom: 64px;
+}
+
+.favorites-grid {
+    margin-top: 16px;
+}
