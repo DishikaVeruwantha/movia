@@ -1,6 +1,6 @@
 "use client"
 
-import { Container, Box, Tabs, Tab } from "@mui/material"
+import {Container, Box, Tabs, Tab, useMediaQuery, useTheme} from "@mui/material"
 import { useMovies } from "../contexts/MovieContext"
 import MovieGrid from "../components/MovieGrid"
 import FilterPanel from "../components/FilterPanel"
@@ -11,6 +11,8 @@ const Home = ({ tabValue, setTabValue }) => {
     const handleTabChange = (event, newValue) => {
         setTabValue(newValue)
     }
+    const theme = useTheme()
+    const isMobile = useMediaQuery(theme.breakpoints.down("sm"))
 
     return (
         <Container maxWidth="xl" className="home-container">
@@ -23,9 +25,11 @@ const Home = ({ tabValue, setTabValue }) => {
                     aria-label="movie tabs"
                     centered
                 >
-                    <Tab label="Trending Movies" />
-                    <Tab label="Filter Movies" />
-                    {searchResults.length > 0 && <Tab label={`Search Results: ${lastSearch}`} />}
+                    <Tab label={isMobile ? "Trending" : "Trending Movies"} />
+                    <Tab label={isMobile ? "Filter" : "Filter Movies"} />
+                    {searchResults.length > 0 && (
+                        <Tab label={isMobile ? `Search (${lastSearch})` : `Search Results: ${lastSearch}`} />
+                    )}
                 </Tabs>
             </Box>
 
