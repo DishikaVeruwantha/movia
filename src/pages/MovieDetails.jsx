@@ -85,7 +85,13 @@ const MovieDetails = () => {
         return trailer ? trailer.key : null
     }
 
-
+    if (loading) {
+        return (
+            <Box className="details-loading">
+                <CircularProgress />
+            </Box>
+        )
+    }
 
 
 
