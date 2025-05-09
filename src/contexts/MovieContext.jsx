@@ -17,11 +17,19 @@ export const MovieProvider = ({ children }) => {
     })
     const [lastSearch, setLastSearch] = useState(() => {
         const savedSearch = localStorage.getItem("lastSearch")
-        return savedSearch || ""
+        if (savedSearch && typeof savedSearch === "string") {
+            return savedSearch
+        } else {
+            return ""
+        }
     })
     const [lastFilter, setLastFilter] = useState(() => {
         const savedFilter = localStorage.getItem("lastFilter")
-        return savedFilter || ""
+        if (savedFilter && typeof savedFilter === "string") {
+            return savedFilter
+        } else {
+            return ""
+        }
     })
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
