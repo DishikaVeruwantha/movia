@@ -202,5 +202,26 @@ export const MovieProvider = ({ children }) => {
         }
     }
 
+    const value = {
+        trendingMovies,
+        searchResults,
+        filterResults,
+        favorites,
+        lastSearch,
+        lastFilter,
+        loading,
+        error,
+        page,
+        totalPages,
+        genres,
+        searchMovies,
+        fetchMovieDetails,
+        addToFavorites,
+        removeFromFavorites,
+        isFavorite,
+        loadMoreResults,
+        filterMovies,
+    }
 
+    return <MovieContext.Provider value={value}>{children}</MovieContext.Provider>
 }
