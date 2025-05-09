@@ -1,5 +1,5 @@
 "use client"
-
+// import relevant libraries and components
 import { useState } from "react"
 import { useNavigate, Link } from "react-router-dom"
 import {
@@ -32,7 +32,9 @@ import {
 import { useMovies } from "../contexts/MovieContext"
 import "./Header.css"
 
+// Header component
 const Header = ({ setTabValue, toggleDarkMode, darkMode }) => {
+    // useState and other hooks
     const { searchMovies, lastSearch } = useMovies()
     const [searchQuery, setSearchQuery] = useState(lastSearch)
     const [drawerOpen, setDrawerOpen] = useState(false)
@@ -40,6 +42,7 @@ const Header = ({ setTabValue, toggleDarkMode, darkMode }) => {
     const theme = useTheme()
     const isMobile = useMediaQuery(theme.breakpoints.down("md"))
 
+    // handleSearch function
     const handleSearch = (e) => {
         e.preventDefault()
         if (searchQuery.trim()) {
@@ -50,6 +53,7 @@ const Header = ({ setTabValue, toggleDarkMode, darkMode }) => {
         }
     }
 
+    // toggleDrawer function
     const toggleDrawer = (open) => (event) => {
         if (!open) {
             if (document.activeElement) {
@@ -62,6 +66,7 @@ const Header = ({ setTabValue, toggleDarkMode, darkMode }) => {
         setDrawerOpen(open)
     }
 
+    // drawerContent
     const drawerContent = (
         <Box className="drawer-content" role="presentation" onClick={toggleDrawer(false)} onKeyDown={toggleDrawer(false)}>
             <List>
@@ -90,8 +95,10 @@ const Header = ({ setTabValue, toggleDarkMode, darkMode }) => {
     )
 
     return (
+        // AppBar component
         <AppBar position="sticky">
             <Toolbar>
+                {/* Show hamburger menu icon only on mobile devices */}
                 {isMobile && (
                     <IconButton
                         size="large"
@@ -105,10 +112,12 @@ const Header = ({ setTabValue, toggleDarkMode, darkMode }) => {
                     </IconButton>
                 )}
 
+                {/* App title as a clickable link to home */}
                 <Typography variant="h6" noWrap component={Link} to="/" className="app-title">
                     Movia
                 </Typography>
 
+                {/* Search form */}
                 <form onSubmit={handleSearch} className="search-form">
                     <div className="search-wrapper">
                         <div className="search-icon-wrapper">
@@ -119,13 +128,14 @@ const Header = ({ setTabValue, toggleDarkMode, darkMode }) => {
                             inputProps={{ "aria-label": "search" }}
                             value={searchQuery}
                             onChange={(e) => {
-                                // Check if searchQuery is an object and reset to empty string
+                                // Prevent object-type values and reset if necessary
                                 const newValue = e.target.value
                                 setSearchQuery(typeof newValue === 'object' ? "" : newValue)
                             }}
                             className="search-input"
                         />
                     </div>
+                    {/* Show search button only on non-mobile devices */}
                     {!isMobile && (
                         <Button type="submit" variant="contained" color="secondary" className="search-button">
                             Search
@@ -133,11 +143,14 @@ const Header = ({ setTabValue, toggleDarkMode, darkMode }) => {
                     )}
                 </form>
 
+                {/* Desktop navigation links and theme toggle */}
                 {!isMobile && (
                     <Box className="nav-links">
+                        {/* Theme toggle icon button */}
                         <IconButton color="inherit" onClick={toggleDarkMode}>
                             {darkMode ? <LightModeIcon /> : <DarkModeIcon />}
                         </IconButton>
+                        {/* Navigation buttons */}
                         <Button color="inherit" component={Link} to="/">
                             Home
                         </Button>
@@ -148,6 +161,7 @@ const Header = ({ setTabValue, toggleDarkMode, darkMode }) => {
                 )}
             </Toolbar>
 
+            {/* Drawer for navigation (only used in mobile view) */}
             <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
                 {drawerContent}
             </Drawer>
