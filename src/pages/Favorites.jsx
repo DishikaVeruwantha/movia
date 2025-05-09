@@ -23,7 +23,7 @@ const Favorites = () => {
                     </Button>
                 </Box>
             ) : (
-                <Grid container spacing={3} className="favorites-grid">
+                <Grid container spacing={3} justifyContent="center" className="favorites-grid">
                     {favorites.map((movie) => (
                         <Grid item key={movie.id} xs={6} sm={4} md={3} lg={3}>
                             <MovieCard movie={movie} />
