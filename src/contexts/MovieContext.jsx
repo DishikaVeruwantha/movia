@@ -152,7 +152,18 @@ export const MovieProvider = ({ children }) => {
         return favorites.some((movie) => movie.id === movieId)
     }
 
-
+    const loadMoreResults = (type) => {
+        if (page < totalPages) {
+            if(type==="search") {
+                searchMovies(lastSearch, page + 1)
+            }else if(type==="filter") {
+                console.log(lastFilter)
+                filterMovies(lastFilter, page + 1)
+            }else if(type==="trending") {
+                fetchTrendingMovies(page + 1)
+            }
+        }
+    }
 
 
 
