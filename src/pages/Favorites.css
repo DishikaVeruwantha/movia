@@ -1,18 +1,22 @@
+/* Container for the entire favorites page */
 .favorites-container {
     padding-top: 32px;
     padding-bottom: 32px;
 }
 
+/* Styling for the "My Favorite Movies" title */
 .favorites-title {
     margin-bottom: 24px;
 }
 
+/* Styling for the empty state when there are no favorites */
 .empty-favorites {
     text-align: center;
     padding-top: 64px;
     padding-bottom: 64px;
 }
 
+/* styling of the Grid layout for displaying favorite movie cards */
 .favorites-grid {
     margin-top: 16px;
 }
