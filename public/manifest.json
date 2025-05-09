@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Movia",
+  "name": "Movie Explorer App",
   "icons": [
     {
       "src": "favicon.ico",

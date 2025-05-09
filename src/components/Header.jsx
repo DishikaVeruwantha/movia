@@ -1,0 +1,154 @@
+"use client"
+
+import { useState } from "react"
+import { useNavigate, Link } from "react-router-dom"
+import {
+    AppBar,
+    Toolbar,
+    Typography,
+    Button,
+    IconButton,
+    InputBase,
+    Box,
+    Drawer,
+    List,
+    ListItem,
+    ListItemButton,
+    ListItemIcon,
+    ListItemText,
+    useMediaQuery,
+    useTheme,
+    Switch,
+    FormControlLabel,
+} from "@mui/material"
+import {
+    Search as SearchIcon,
+    Menu as MenuIcon,
+    Home as HomeIcon,
+    Favorite as FavoriteIcon,
+    DarkMode as DarkModeIcon,
+    LightMode as LightModeIcon,
+} from "@mui/icons-material"
+import { useMovies } from "../contexts/MovieContext"
+import "./Header.css"
+
+const Header = ({ setTabValue, toggleDarkMode, darkMode }) => {
+    const { searchMovies, lastSearch } = useMovies()
+    const [searchQuery, setSearchQuery] = useState(lastSearch)
+    const [drawerOpen, setDrawerOpen] = useState(false)
+    const navigate = useNavigate()
+    const theme = useTheme()
+    const isMobile = useMediaQuery(theme.breakpoints.down("md"))
+
+    const handleSearch = (e) => {
+        e.preventDefault()
+        if (searchQuery.trim()) {
+            searchMovies(searchQuery)
+            navigate("/")
+            setTabValue(2)
+            setDrawerOpen(false)
+        }
+    }
+
+    const toggleDrawer = (open) => (event) => {
+        if (!open) {
+            if (document.activeElement) {
+                document.activeElement.blur();
+            }
+        }
+        if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
+            return
+        }
+        setDrawerOpen(open)
+    }
+
+    const drawerContent = (
+        <Box className="drawer-content" role="presentation" onClick={toggleDrawer(false)} onKeyDown={toggleDrawer(false)}>
+            <List>
+                <ListItemButton>
+                    <ListItemIcon>
+                        <HomeIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Home" />
+                    <Link to="/" style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} />
+                </ListItemButton>
+                <ListItemButton >
+                    <ListItemIcon>
+                        <FavoriteIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Favorites" />
+                    <Link to="Favorites" style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} />
+                </ListItemButton>
+                <ListItem>
+                    <FormControlLabel
+                        control={<Switch checked={darkMode} onChange={toggleDarkMode} color="primary" />}
+                        label={darkMode ? "Dark Mode" : "Light Mode"}
+                    />
+                </ListItem>
+            </List>
+        </Box>
+    )
+
+    return (
+        <AppBar position="sticky">
+            <Toolbar>
+                {isMobile && (
+                    <IconButton
+                        size="large"
+                        edge="start"
+                        color="inherit"
+                        aria-label="menu"
+                        className="menu-button"
+                        onClick={toggleDrawer(true)}
+                    >
+                        <MenuIcon />
+                    </IconButton>
+                )}
+
+                <Typography variant="h6" noWrap component={Link} to="/" className="app-title">
+                    Movia
+                </Typography>
+
+                <form onSubmit={handleSearch} className="search-form">
+                    <div className="search-wrapper">
+                        <div className="search-icon-wrapper">
+                            <SearchIcon />
+                        </div>
+                        <InputBase
+                            placeholder="Search movies…"
+                            inputProps={{ "aria-label": "search" }}
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className="search-input"
+                        />
+                    </div>
+                    {!isMobile && (
+                        <Button type="submit" variant="contained" color="secondary" className="search-button">
+                            Search
+                        </Button>
+                    )}
+                </form>
+
+                {!isMobile && (
+                    <Box className="nav-links">
+                        <IconButton color="inherit" onClick={toggleDarkMode}>
+                            {darkMode ? <LightModeIcon /> : <DarkModeIcon />}
+                        </IconButton>
+                        <Button color="inherit" component={Link} to="/">
+                            Home
+                        </Button>
+                        <Button color="inherit" component={Link} to="/favorites">
+                            Favorites
+                        </Button>
+                    </Box>
+                )}
+            </Toolbar>
+
+            <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
+                {drawerContent}
+            </Drawer>
+        </AppBar>
+    )
+}
+
+export default Header

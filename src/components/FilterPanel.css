@@ -1,0 +1,31 @@
+.filter-paper {
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.filter-accordion {
+    margin-bottom: 16px;
+}
+
+.filter-header {
+    display: flex;
+    align-items: center;
+}
+
+.filter-icon {
+    margin-right: 8px;
+}
+
+.filter-title {
+    display: flex;
+    align-items: center;
+}
+
+.filter-item {
+    margin-bottom: 24px;
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 16px;
+}
