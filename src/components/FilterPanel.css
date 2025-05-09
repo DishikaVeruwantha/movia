@@ -1,30 +1,37 @@
+/* Container for the filter panel, providing padding and spacing below */
 .filter-paper {
     padding: 24px;
     margin-bottom: 24px;
 }
 
+/* Styles for each accordion section within the filter panel */
 .filter-accordion {
     margin-bottom: 16px;
 }
 
+/* Header of each filter section, aligns content horizontally */
 .filter-header {
     display: flex;
     align-items: center;
 }
 
+/* Icon inside the filter header, spaced to the right */
 .filter-icon {
     margin-right: 8px;
 }
 
+/* Title section of the filter, aligned horizontally with its contents */
 .filter-title {
     display: flex;
     align-items: center;
 }
 
+/* Individual filter item spacing */
 .filter-item {
     margin-bottom: 24px;
 }
 
+/* Container for filter action buttons (e.g., Apply, Reset) with spacing between them */
 .filter-buttons {
     display: flex;
     gap: 16px;

@@ -1,9 +1,11 @@
+/* Root app container ensures full viewport height and vertical layout */
 .app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
+/* Common container for content with consistent padding and max width */
 .container {
   padding: 24px;
   max-width: 1200px;
@@ -11,6 +13,7 @@
   flex: 1;
 }
 
+/* Page-specific container with same layout properties */
 .page-container {
   padding: 24px;
   max-width: 1200px;
@@ -18,24 +21,28 @@
   flex: 1;
 }
 
+/* Utility class to center content both horizontally and vertically */
 .center-content {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+/* Spinner/loader container styling for centered alignment */
 .loading-container {
   display: flex;
   justify-content: center;
   padding: 2rem;
 }
 
+/* Style for displaying error messages */
 .error-message {
   color: #f44336;
   text-align: center;
   padding: 1rem;
 }
 
+/* Style for displaying messages when no data is found */
 .empty-message {
   text-align: center;
   padding: 2rem;

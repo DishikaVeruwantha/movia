@@ -1,44 +1,53 @@
+/* Container for the entire movie grid section */
 .movie-grid-container {
     padding-top: 32px;
     padding-bottom: 32px;
 }
 
+/* Styling for the grid title (e.g., "Top Rated Movies") */
 .grid-title {
     margin-bottom: 16px;
 }
 
+/* Styling for the grid of movie cards */
 .movie-grid {
     margin-bottom: 24px;
 }
 
+/* Container shown when loading initial movies */
 .loading-container {
     display: flex;
     justify-content: center;
     padding: 32px;
 }
 
+/* Container shown when an error occurs */
 .error-container {
     padding: 32px;
     text-align: center;
 }
 
+/* Container shown when no movies are found */
 .empty-container {
     padding: 32px;
     text-align: center;
 }
 
+/* Spinner shown when loading more movies  */
 .loading-more-container {
     display: flex;
     justify-content: center;
     padding: 32px;
 }
 
+/* Container for the "Load More" button */
 .load-more-container {
     display: flex;
     justify-content: center;
     margin-top: 32px;
 }
 
+/* Minimum width for the "Load More" button to ensure consistency */
 .load-more-button {
     min-width: 120px;
 }
