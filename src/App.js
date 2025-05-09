@@ -70,7 +70,39 @@ function App() {
     setDarkMode(!darkMode)
   }
 
-  return
+  return (
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+          <MovieProvider>
+            <Router>
+              <div className="app">
+                <Header setTabValue={setTabValue} toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
+                <Routes>
+                  <Route
+                      path="/"
+                      element={
+                          <Home tabValue={tabValue} setTabValue={setTabValue} />
+                      }
+                  />
+                  <Route
+                      path="/movie/:id"
+                      element={
+                          <MovieDetails />
+                      }
+                  />
+                  <Route
+                      path="/favorites"
+                      element={
+                          <Favorites />
+                      }
+                  />
+                  <Route path="*" element={<Navigate to="/" replace />} />
+                </Routes>
+              </div>
+            </Router>
+          </MovieProvider>
+      </ThemeProvider>
+  )
 }
 
 export default App
