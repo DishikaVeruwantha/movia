@@ -44,7 +44,7 @@ const MovieGrid = ({
                     {title}
                 </Typography>
             )}
-            <Grid container spacing={3} className="movie-grid">
+            <Grid container spacing={3} justifyContent="center" className="movie-grid">
                 {movies.map((movie) => (
                     <Grid item key={movie.id} xs={6} sm={4} md={3} lg={3}>
                         <MovieCard movie={movie} />
