@@ -17,6 +17,9 @@ export const MovieProvider = ({ children }) => {
     })
     const [lastSearch, setLastSearch] = useState(() => {
         const savedSearch = localStorage.getItem("lastSearch")
+        if(savedSearch==="[object Object]"){
+            return ""
+        }
         if (savedSearch && typeof savedSearch === "string") {
             return savedSearch
         } else {
@@ -25,6 +28,9 @@ export const MovieProvider = ({ children }) => {
     })
     const [lastFilter, setLastFilter] = useState(() => {
         const savedFilter = localStorage.getItem("lastFilter")
+        if(savedFilter==="[object Object]"){
+            return ""
+        }
         if (savedFilter && typeof savedFilter === "string") {
             return savedFilter
         } else {
