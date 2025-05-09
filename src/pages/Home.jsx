@@ -1,6 +1,5 @@
 "use client"
 
-import { useState } from "react"
 import { Container, Box, Tabs, Tab } from "@mui/material"
 import { useMovies } from "../contexts/MovieContext"
 import MovieGrid from "../components/MovieGrid"

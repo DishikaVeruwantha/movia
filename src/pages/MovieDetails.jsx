@@ -52,6 +52,7 @@ const MovieDetails = () => {
         }
 
         getMovieDetails()
+        // eslint-disable-next-line
     }, [])
 
     const handleFavoriteClick = () => {
