@@ -165,7 +165,42 @@ export const MovieProvider = ({ children }) => {
         }
     }
 
+    const filterMovies = async (filters, page = 1) => {
+        setLoading(true)
+        setError(null)
+        setLastFilter(filters)
 
+        try {
+            let url = `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&page=${page}`
+
+            if (filters.year) {
+                url += `&primary_release_year=${filters.year}`
+            }
+
+            if (filters.genre) {
+                url += `&with_genres=${filters.genre}`
+            }
+
+            if (filters.rating) {
+                url += `&vote_average.gte=${filters.rating}`
+            }
+
+            const response = await axios.get(url)
+            if (page === 1) {
+                setFilterResults(response.data.results)
+            } else {
+                setFilterResults((prev) => [...prev, ...response.data.results])
+            }
+
+            setTotalPages(response.data.total_pages)
+            setPage(page)
+        } catch (error) {
+            console.error("Error filtering movies:", error)
+            setError("Failed to filter movies. Please try again later.")
+        } finally {
+            setLoading(false)
+        }
+    }
 
 
 }
