@@ -61,7 +61,27 @@ export const MovieProvider = ({ children }) => {
         }
     }
 
+    const fetchTrendingMovies = async (page = 1) => {
+        setLoading(true)
+        setError(null)
+        try {
+            const response = await axios.get(`${BASE_URL}/trending/movie/day?api_key=${API_KEY}&page=${page}`)
 
+            if (page === 1) {
+                setTrendingMovies(response.data.results)
+            } else {
+                setTrendingMovies((prev) => [...prev, ...response.data.results])
+            }
+
+            setTotalPages(response.data.total_pages)
+            setPage(page)
+        } catch (error) {
+            console.error("Error fetching trending movies:", error)
+            setError("Failed to fetch trending movies. Please try again later.")
+        } finally {
+            setLoading(false)
+        }
+    }
 
 
 
