@@ -29,7 +29,8 @@ export const MovieProvider = ({ children }) => {
     const [totalPages, setTotalPages] = useState(0)
     const [genres, setGenres] = useState([])
 
-
+    const API_KEY = process.env.REACT_APP_API_KEY
+    const BASE_URL = process.env.REACT_APP_BASE_URL
 
 
 
