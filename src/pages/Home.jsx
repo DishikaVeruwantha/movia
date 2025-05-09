@@ -15,7 +15,20 @@ const Home = ({ tabValue, setTabValue }) => {
 
     return (
         <Container maxWidth="xl" className="home-container">
-
+            <Box className="tabs-container">
+                <Tabs
+                    value={tabValue}
+                    onChange={handleTabChange}
+                    textColor="primary"
+                    indicatorColor="primary"
+                    aria-label="movie tabs"
+                    centered
+                >
+                    <Tab label="Trending Movies" />
+                    <Tab label="Filter Movies" />
+                    {searchResults.length > 0 && <Tab label={`Search Results: ${lastSearch}`} />}
+                </Tabs>
+            </Box>
 
 
 
