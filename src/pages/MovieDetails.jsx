@@ -160,7 +160,12 @@ const MovieDetails = () => {
                             </Typography>
                         </Box>
 
-
+                        <Box className="genres-container">
+                            {movie.genres &&
+                                movie.genres.map((genre) => (
+                                    <Chip key={genre.id} label={genre.name} size="small" className="genre-chip" />
+                                ))}
+                        </Box>
 
 
 
