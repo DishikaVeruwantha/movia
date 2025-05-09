@@ -51,7 +51,15 @@ export const MovieProvider = ({ children }) => {
         fetchTrendingMovies()
     }, [])
 
-
+    const fetchGenres = async () => {
+        try {
+            const response = await axios.get(`${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=en-US`)
+            setGenres(response.data.genres)
+        } catch (error) {
+            console.error("Error fetching genres:", error)
+            setError("Failed to fetch genres. Please try again later.")
+        }
+    }
 
 
 
