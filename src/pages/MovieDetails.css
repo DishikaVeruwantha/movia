@@ -1,0 +1,149 @@
+.details-container {
+    padding-top: 32px;
+    padding-bottom: 32px;
+}
+
+.details-paper {
+    padding: 32px;
+    overflow: hidden;
+}
+.poster-outerContainer{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+
+@media (max-width: 600px) {
+    .details-paper {
+        padding: 16px;
+    }
+}
+
+.details-loading {
+    display: flex;
+    justify-content: center;
+    padding: 32px;
+}
+
+.poster-container {
+    position: relative;
+}
+
+.movie-poster-large {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.favorite-button-large {
+    margin-top: 16px;
+    width: 100%;
+}
+
+.movie-title-large {
+    margin-bottom: 16px;
+}
+
+.movie-year {
+    margin-left: 8px;
+}
+
+.rating-container-large {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.rating-value {
+    margin-left: 8px;
+}
+
+.vote-count {
+    margin-left: 8px;
+}
+
+.genres-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.genre-chip {
+    margin-right: 8px;
+    margin-bottom: 8px;
+}
+
+.overview-container {
+    margin-bottom: 24px;
+}
+
+.movie-meta {
+    margin-bottom: 24px;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+}
+
+.meta-icon {
+    margin-right: 8px;
+}
+
+.details-divider {
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.section-title {
+    margin-bottom: 16px;
+}
+
+.cast-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.cast-item {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+}
+
+@media (min-width: 600px) {
+    .cast-item {
+        width: calc(50% - 8px);
+    }
+}
+
+@media (min-width: 960px) {
+    .cast-item {
+        width: calc(33.333% - 8px);
+    }
+}
+
+.trailer-section {
+    margin-top: 32px;
+}
+
+.trailer-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.trailer-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
