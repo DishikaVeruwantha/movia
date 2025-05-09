@@ -22,7 +22,49 @@ function App() {
     localStorage.setItem("darkMode", JSON.stringify(darkMode))
   }, [darkMode])
 
-
+  const theme = createTheme({
+    palette: {
+      mode: darkMode ? "dark" : "light",
+      primary: {
+        main: "#e50914",
+      },
+      secondary: {
+        main: "#221f1f",
+      },
+      background: {
+        default: darkMode ? "#121212" : "#f5f5f5",
+        paper: darkMode ? "#1e1e1e" : "#ffffff",
+      },
+    },
+    typography: {
+      fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+      h1: {
+        fontWeight: 700,
+      },
+      h2: {
+        fontWeight: 600,
+      },
+    },
+    components: {
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            borderRadius: 4,
+            textTransform: "none",
+            fontWeight: 600,
+          },
+        },
+      },
+      MuiCard: {
+        styleOverrides: {
+          root: {
+            borderRadius: 8,
+            overflow: "hidden",
+          },
+        },
+      },
+    },
+  })
 
 
 
