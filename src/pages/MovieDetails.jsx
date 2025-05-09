@@ -77,7 +77,13 @@ const MovieDetails = () => {
         }).format(value)
     }
 
+    const getTrailerKey = () => {
+        if (!movie || !movie.videos || !movie.videos.results) return null
 
+        const trailer = movie.videos.results.find((video) => video.type === "Trailer" && video.site === "YouTube")
+
+        return trailer ? trailer.key : null
+    }
 
 
 
