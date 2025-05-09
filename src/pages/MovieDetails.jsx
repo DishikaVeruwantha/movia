@@ -1,5 +1,5 @@
 "use client"
-
+// import relevant libraries and components
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import {
@@ -26,7 +26,9 @@ import { Favorite, FavoriteBorder, AccessTime, CalendarToday, Language, AttachMo
 import { useMovies } from "../contexts/MovieContext"
 import "./MovieDetails.css"
 
+// MovieDetails component
 const MovieDetails = () => {
+    // useMovies hook to get movie data and functions
     const { id } = useParams()
     const { fetchMovieDetails, addToFavorites, removeFromFavorites, isFavorite } = useMovies()
     const [movie, setMovie] = useState(null)
@@ -37,6 +39,7 @@ const MovieDetails = () => {
     // eslint-disable-next-line
     const isMobile = useMediaQuery(theme.breakpoints.down("md"))
 
+    // Fetch movie details when the component mounts
     useEffect(() => {
         const getMovieDetails = async () => {
             setLoading(true)
@@ -55,7 +58,9 @@ const MovieDetails = () => {
         // eslint-disable-next-line
     }, [])
 
+    // Handle favorite button click
     const handleFavoriteClick = () => {
+        // Check if the movie is already a favorite
         if (favorite) {
             removeFromFavorites(movie.id)
         } else {
@@ -69,8 +74,11 @@ const MovieDetails = () => {
         }
     }
 
+    // Format currency function
     const formatCurrency = (value) => {
+        // Check if the value is null or undefined
         if (!value) return "N/A"
+        // Check if the value is a number
         return new Intl.NumberFormat("en-US", {
             style: "currency",
             currency: "USD",
@@ -78,14 +86,19 @@ const MovieDetails = () => {
         }).format(value)
     }
 
+    // Get trailer key function
     const getTrailerKey = () => {
+        // Check if the movie object and its videos property exist
         if (!movie || !movie.videos || !movie.videos.results) return null
 
+        // Find the trailer video from the movie's videos
         const trailer = movie.videos.results.find((video) => video.type === "Trailer" && video.site === "YouTube")
 
+        // Check if a trailer was found
         return trailer ? trailer.key : null
     }
 
+    // Conditional rendering based on loading, error, and movie state
     if (loading) {
         return (
             <Box className="details-loading">
@@ -94,6 +107,7 @@ const MovieDetails = () => {
         )
     }
 
+    // If there's an error, show an error message
     if (error) {
         return (
             <Container maxWidth="lg" className="details-container">
@@ -102,6 +116,7 @@ const MovieDetails = () => {
         )
     }
 
+    // If movie is not found, show a message
     if (!movie) {
         return (
             <Container maxWidth="lg" className="details-container">
@@ -110,13 +125,15 @@ const MovieDetails = () => {
         )
     }
 
+    // Render the movie details
     const trailerKey = getTrailerKey()
 
     return (
         <Container maxWidth="lg" className="details-container">
+            {/* Main paper wrapper with elevation for card-like appearance */}
             <Paper elevation={3} className="details-paper">
                 <Grid container spacing={4}>
-                    {/* Movie Poster */}
+                    {/* Movie Poster Section */}
                     <Grid item xs={12} md={4} className="poster-outerContainer">
                         <Box className="poster-container">
                             <img
@@ -128,6 +145,7 @@ const MovieDetails = () => {
                                 alt={movie.title}
                                 className="movie-poster-large"
                             />
+                            {/* Button to add/remove movie from favorites */}
                             <Button
                                 variant={favorite ? "contained" : "outlined"}
                                 color="primary"
@@ -140,7 +158,7 @@ const MovieDetails = () => {
                         </Box>
                     </Grid>
 
-                    {/* Movie Details */}
+                    {/* Movie Details Section */}
                     <Grid item xs={12} md={8}>
                         <Typography variant="h4" component="h1" className="movie-title-large">
                             {movie.title}
@@ -151,6 +169,7 @@ const MovieDetails = () => {
                             )}
                         </Typography>
 
+                        {/* Rating and vote info */}
                         <Box className="rating-container-large">
                             <Rating value={movie.vote_average / 2} precision={0.5} readOnly />
                             <Typography variant="body1" className="rating-value">
@@ -161,6 +180,7 @@ const MovieDetails = () => {
                             </Typography>
                         </Box>
 
+                        {/* Genre chips */}
                         <Box className="genres-container">
                             {movie.genres &&
                                 movie.genres.map((genre) => (
@@ -168,12 +188,14 @@ const MovieDetails = () => {
                                 ))}
                         </Box>
 
+                        {/* Movie overview */}
                         <Box className="overview-container">
                             <Typography variant="body1" paragraph>
                                 {movie.overview}
                             </Typography>
                         </Box>
 
+                        {/* Additional metadata: runtime, release date, language, budget */}
                         <Grid container spacing={2} className="movie-meta">
                             <Grid item xs={6} sm={3}>
                                 <Box className="meta-item">
@@ -205,6 +227,7 @@ const MovieDetails = () => {
                             </Grid>
                         </Grid>
 
+                        {/* Divider for visual separation */}
                         <Divider className="details-divider" />
 
                         {/* Cast Section */}
@@ -236,7 +259,7 @@ const MovieDetails = () => {
                     </Grid>
                 </Grid>
 
-                {/* Trailer Section */}
+                {/* Trailer Section if available */}
                 {trailerKey && (
                     <Box className="trailer-section">
                         <Typography variant="h6" className="section-title">
