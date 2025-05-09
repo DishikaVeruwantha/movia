@@ -93,7 +93,13 @@ const MovieDetails = () => {
         )
     }
 
-
+    if (error) {
+        return (
+            <Container maxWidth="lg" className="details-container">
+                <Alert severity="error">{error}</Alert>
+            </Container>
+        )
+    }
 
 
 
