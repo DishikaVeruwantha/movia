@@ -32,7 +32,24 @@ export const MovieProvider = ({ children }) => {
     const API_KEY = process.env.REACT_APP_API_KEY
     const BASE_URL = process.env.REACT_APP_BASE_URL
 
+    useEffect(() => {
+        localStorage.setItem("favorites", JSON.stringify(favorites))
+    }, [favorites])
 
+    useEffect(() => {
+        localStorage.setItem("lastSearch", lastFilter)
+    }, [lastFilter])
+
+    useEffect(() => {
+        localStorage.setItem("lastSearch", lastSearch)
+    }, [lastSearch])
+
+    useEffect(() => {
+        // Fetch genres when component mounts
+        fetchGenres()
+        // Fetch trending movies when component mounts
+        fetchTrendingMovies()
+    }, [])
 
 
 
