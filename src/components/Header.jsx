@@ -118,7 +118,11 @@ const Header = ({ setTabValue, toggleDarkMode, darkMode }) => {
                             placeholder="Search movies…"
                             inputProps={{ "aria-label": "search" }}
                             value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
+                            onChange={(e) => {
+                                // Check if searchQuery is an object and reset to empty string
+                                const newValue = e.target.value
+                                setSearchQuery(typeof newValue === 'object' ? "" : newValue)
+                            }}
                             className="search-input"
                         />
                     </div>
