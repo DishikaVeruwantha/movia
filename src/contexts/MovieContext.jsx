@@ -83,7 +83,33 @@ export const MovieProvider = ({ children }) => {
         }
     }
 
+    const searchMovies = async (query, page = 1) => {
+        if (!query) return
 
+        setLoading(true)
+        setError(null)
+        setLastSearch(query)
+
+        try {
+            const response = await axios.get(
+                `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${query}&page=${page}&include_adult=false`,
+            )
+
+            if (page === 1) {
+                setSearchResults(response.data.results)
+            } else {
+                setSearchResults((prev) => [...prev, ...response.data.results])
+            }
+
+            setTotalPages(response.data.total_pages)
+            setPage(page)
+        } catch (error) {
+            console.error("Error searching movies:", error)
+            setError("Failed to search movies. Please try again later.")
+        } finally {
+            setLoading(false)
+        }
+    }
 
 
 
