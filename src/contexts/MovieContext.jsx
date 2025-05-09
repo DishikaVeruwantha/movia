@@ -111,7 +111,29 @@ export const MovieProvider = ({ children }) => {
         }
     }
 
+    const fetchMovieDetails = async (movieId) => {
+        setLoading(true)
+        setError(null)
+        try {
+            const [movieResponse, creditsResponse, videosResponse] = await Promise.all([
+                axios.get(`${BASE_URL}/movie/${movieId}?api_key=${API_KEY}&language=en-US`),
+                axios.get(`${BASE_URL}/movie/${movieId}/credits?api_key=${API_KEY}&language=en-US`),
+                axios.get(`${BASE_URL}/movie/${movieId}/videos?api_key=${API_KEY}&language=en-US`),
+            ])
 
+            return {
+                ...movieResponse.data,
+                credits: creditsResponse.data,
+                videos: videosResponse.data,
+            }
+        } catch (error) {
+            console.error("Error fetching movie details:", error)
+            setError("Failed to fetch movie details. Please try again later.")
+            return null
+        } finally {
+            setLoading(false)
+        }
+    }
 
 
 
