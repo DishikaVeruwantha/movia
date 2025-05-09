@@ -115,7 +115,29 @@ const MovieDetails = () => {
         <Container maxWidth="lg" className="details-container">
             <Paper elevation={3} className="details-paper">
                 <Grid container spacing={4}>
-
+                    {/* Movie Poster */}
+                    <Grid item xs={12} md={4} className="poster-outerContainer">
+                        <Box className="poster-container">
+                            <img
+                                src={
+                                    movie.poster_path
+                                        ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                                        : "https://via.placeholder.com/500x750?text=No+Image"
+                                }
+                                alt={movie.title}
+                                className="movie-poster-large"
+                            />
+                            <Button
+                                variant={favorite ? "contained" : "outlined"}
+                                color="primary"
+                                startIcon={favorite ? <Favorite /> : <FavoriteBorder />}
+                                onClick={handleFavoriteClick}
+                                className="favorite-button-large"
+                            >
+                                {favorite ? "Remove from Favorites" : "Add to Favorites"}
+                            </Button>
+                        </Box>
+                    </Grid>
 
 
                 </Grid>
