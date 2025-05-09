@@ -37,6 +37,37 @@ const MovieDetails = () => {
     // eslint-disable-next-line
     const isMobile = useMediaQuery(theme.breakpoints.down("md"))
 
+    useEffect(() => {
+        const getMovieDetails = async () => {
+            setLoading(true)
+            try {
+                const details = await fetchMovieDetails(id)
+                setMovie(details)
+            } catch (err) {
+                console.error("Error fetching movie details:", err)
+                setError("Failed to load movie details. Please try again later.")
+            } finally {
+                setLoading(false)
+            }
+        }
+
+        getMovieDetails()
+    }, [])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     return (
         <Container maxWidth="lg" className="details-container">
             <Paper elevation={3} className="details-paper">
