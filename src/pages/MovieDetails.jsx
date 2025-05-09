@@ -68,7 +68,14 @@ const MovieDetails = () => {
         }
     }
 
-
+    const formatCurrency = (value) => {
+        if (!value) return "N/A"
+        return new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD",
+            maximumFractionDigits: 0,
+        }).format(value)
+    }
 
 
 
