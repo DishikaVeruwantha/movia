@@ -204,7 +204,7 @@ const MovieDetails = () => {
                             </Grid>
                         </Grid>
 
-
+                        <Divider className="details-divider" />
 
 
                     </Grid>
