@@ -13,6 +13,7 @@
 .search-form {
     flex-grow: 1;
     display: flex;
+    margin: 1em;
     justify-content: center;
 }
 
