@@ -109,7 +109,7 @@ const MovieDetails = () => {
         )
     }
 
-
+    const trailerKey = getTrailerKey()
 
     return (
         <Container maxWidth="lg" className="details-container">
