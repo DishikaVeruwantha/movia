@@ -235,7 +235,26 @@ const MovieDetails = () => {
                     </Grid>
                 </Grid>
 
-
+                {/* Trailer Section */}
+                {trailerKey && (
+                    <Box className="trailer-section">
+                        <Typography variant="h6" className="section-title">
+                            Trailer
+                        </Typography>
+                        <Box className="trailer-container">
+                            <iframe
+                                width="100%"
+                                height="100%"
+                                src={`https://www.youtube.com/embed/${trailerKey}`}
+                                title="YouTube video player"
+                                frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                                className="trailer-iframe"
+                            ></iframe>
+                        </Box>
+                    </Box>
+                )}
             </Paper>
         </Container>
     )
